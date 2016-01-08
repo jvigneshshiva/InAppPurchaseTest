@@ -17,6 +17,7 @@
 		2FA360001C3F54990031231D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA35FFA1C3F54990031231D /* MasterViewController.swift */; };
 		2FA360021C3F54990031231D /* RageProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA35FFC1C3F54990031231D /* RageProducts.swift */; };
 		2FA360051C3F54C60031231D /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA360041C3F54C60031231D /* IAPHelper.swift */; };
+		2FA360091C3F852D0031231D /* verifyReceipt.php in Resources */ = {isa = PBXBuildFile; fileRef = 2FA360081C3F852D0031231D /* verifyReceipt.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		2FA35FFA1C3F54990031231D /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		2FA35FFC1C3F54990031231D /* RageProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RageProducts.swift; sourceTree = "<group>"; };
 		2FA360041C3F54C60031231D /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		2FA360081C3F852D0031231D /* verifyReceipt.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = verifyReceipt.php; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				2FA35FFA1C3F54990031231D /* MasterViewController.swift */,
 				2FA35FFC1C3F54990031231D /* RageProducts.swift */,
 				2FA360041C3F54C60031231D /* IAPHelper.swift */,
+				2FA360081C3F852D0031231D /* verifyReceipt.php */,
 			);
 			path = InAppPurchaseTestSwift;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA360091C3F852D0031231D /* verifyReceipt.php in Resources */,
 				2F50C3421C324E36008675B7 /* LaunchScreen.storyboard in Resources */,
 				2F50C33F1C324E36008675B7 /* Assets.xcassets in Resources */,
 				2F50C33D1C324E36008675B7 /* Main.storyboard in Resources */,

@@ -117,7 +117,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
   /// For each transaction act accordingly, save in the purchased cache, issue notifications,
   /// mark the transaction as complete.
   public func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    for transaction in transactions as! [SKPaymentTransaction] {
+    for transaction in transactions {
       switch (transaction.transactionState) {
       case .Purchased:
         completeTransaction(transaction)
@@ -147,25 +147,42 @@ extension IAPHelper: SKPaymentTransactionObserver {
     print("restoreTransaction... \(productIdentifier)")
     provideContentForProductIdentifier(productIdentifier)
     SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-    validateTransaction(transaction)
+    validateReceipt()
+//    validateTransaction(transaction)
   }
     
-    private func validateTransaction(transaction: SKPaymentTransaction) {
-        let receiptData : NSData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)!
-        let requestContents : [String : AnyObject] = [ "receipt-data" : receiptData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength) , "password" : "7bceb97f86fb4ecba7439c19facde395"]
-        let requestData = try! NSJSONSerialization.dataWithJSONObject(requestContents, options: [.PrettyPrinted])
-        print(requestContents)
-        let storeURL : NSURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
-        let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
-        storeRequest.HTTPMethod = "POST"
-        storeRequest.HTTPBody = requestData
-        let operationQueue : NSOperationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(storeRequest, queue: operationQueue, completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-            let jsonResponse = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-            print(jsonResponse)
-        })
+    func validateReceipt() {
+
+        
+        let receiptUrl = NSBundle.mainBundle().appStoreReceiptURL
+        let receipt: NSData = NSData(contentsOfURL: receiptUrl!)!
+        
+        let receiptdata: NSString = receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        //println(receiptdata)
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://testapps.vshiva.com")!)
+        
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
         
 
+        request.HTTPBody = receiptdata.dataUsingEncoding(NSASCIIStringEncoding)
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            
+            let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
+            
+            if let parseJSON = json {
+                print("Receipt \(parseJSON)")
+            }
+            else {
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Receipt Error: \(jsonStr)")
+            }
+
+        })
+        
+        task.resume()
     }
   
   // Helper: Saves the fact that the product has been purchased and posts a notification.
