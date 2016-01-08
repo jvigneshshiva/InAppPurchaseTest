@@ -147,7 +147,26 @@ extension IAPHelper: SKPaymentTransactionObserver {
     print("restoreTransaction... \(productIdentifier)")
     provideContentForProductIdentifier(productIdentifier)
     SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+    validateTransaction(transaction)
   }
+    
+    private func validateTransaction(transaction: SKPaymentTransaction) {
+        let receiptData : NSData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)!
+        let requestContents : [String : AnyObject] = [ "receipt-data" : receiptData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength) , "password" : "7bceb97f86fb4ecba7439c19facde395"]
+        let requestData = try! NSJSONSerialization.dataWithJSONObject(requestContents, options: [.PrettyPrinted])
+        print(requestContents)
+        let storeURL : NSURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
+        let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
+        storeRequest.HTTPMethod = "POST"
+        storeRequest.HTTPBody = requestData
+        let operationQueue : NSOperationQueue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(storeRequest, queue: operationQueue, completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            let jsonResponse = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            print(jsonResponse)
+        })
+        
+
+    }
   
   // Helper: Saves the fact that the product has been purchased and posts a notification.
   private func provideContentForProductIdentifier(productIdentifier: String) {

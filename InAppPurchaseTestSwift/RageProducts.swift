@@ -18,16 +18,14 @@ public enum RageProducts {
 
   
   /// MARK: - Supported Product Identifiers
-  public static let GirlfriendOfDrummer = Prefix + "PurchasePackTest"
-  public static let iPhoneRage          = Prefix + "PurchasePackSubcriptionTest"
-  public static let NightlyRage         = Prefix + "FreeSubscriptionTest"
-  public static let Updog               = Prefix + "updog"
+  public static let PurchasePackConsumable = Prefix + "PurchasePackConsumable"
+  public static let PurchasePackSubcriptionTest          = Prefix + "PurchasePackSubcriptionTest"
+  public static let FreeSubscriptionTest         = Prefix + "FreeSubscriptionTest"
   
   // All of the products assembled into a set of product identifiers.
-  private static let productIdentifiers: Set<ProductIdentifier> = [RageProducts.GirlfriendOfDrummer,
-                                                                   RageProducts.iPhoneRage,
-                                                                   RageProducts.NightlyRage,
-                                                                   RageProducts.Updog]
+  private static let productIdentifiers: Set<ProductIdentifier> = [RageProducts.PurchasePackConsumable,
+                                                                   RageProducts.PurchasePackSubcriptionTest,
+                                                                   RageProducts.FreeSubscriptionTest]
   
   /// Static instance of IAPHelper that for rage products.
   public static let store = IAPHelper(productIdentifiers: RageProducts.productIdentifiers)
