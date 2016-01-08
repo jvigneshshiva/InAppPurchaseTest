@@ -147,7 +147,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
     print("restoreTransaction... \(productIdentifier)")
     provideContentForProductIdentifier(productIdentifier)
     SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-    validateReceipt()
 //    validateTransaction(transaction)
   }
     
