@@ -29,7 +29,7 @@ class MasterViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    validateReceipt()
     title = "In App Demo"
     
     // Set up a refresh control, call reload to start things up
@@ -155,6 +155,52 @@ class MasterViewController: UITableViewController {
     }
     return cell
   }
+    public func validateReceipt() {
+        
+        let receiptData : NSData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)!
+        
+        let receiptString: NSString = receiptData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        
+        let requestContents : [String : AnyObject] = [ "receipt-data" : receiptString , "password" : "3888249939794d8ea499b35d6d86ec52"]
+        
+        let requestData = try! NSJSONSerialization.dataWithJSONObject(requestContents, options: [NSJSONWritingOptions(rawValue: 0)])
+        
+        let storeURL : NSURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
+        
+        let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
+        
+        storeRequest.HTTPMethod = "POST"
+        
+        storeRequest.HTTPBody = requestData
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(storeRequest, completionHandler: {data, response, error -> Void in
+            
+            let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
+            
+            if let parseJSON = json {
+                
+                print("Receipt \(parseJSON)")
+                
+            }
+                
+            else {
+                
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                
+                print("Receipt Error: \(jsonStr)")
+                
+            }
+            
+        })
+        
+        task.resume();
+        
+        
+        
+    }
+
 
 }
 

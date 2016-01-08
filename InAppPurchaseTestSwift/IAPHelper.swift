@@ -151,39 +151,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
 //    validateTransaction(transaction)
   }
     
-    func validateReceipt() {
-
         
-        let receiptUrl = NSBundle.mainBundle().appStoreReceiptURL
-        let receipt: NSData = NSData(contentsOfURL: receiptUrl!)!
-        
-        let receiptdata: NSString = receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-        //println(receiptdata)
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://testapps.vshiva.com")!)
-        
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        
-
-        request.HTTPBody = receiptdata.dataUsingEncoding(NSASCIIStringEncoding)
-        
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            
-            let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
-            
-            if let parseJSON = json {
-                print("Receipt \(parseJSON)")
-            }
-            else {
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Receipt Error: \(jsonStr)")
-            }
-
-        })
-        
-        task.resume()
-    }
   
   // Helper: Saves the fact that the product has been purchased and posts a notification.
   private func provideContentForProductIdentifier(productIdentifier: String) {
