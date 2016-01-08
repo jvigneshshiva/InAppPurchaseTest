@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2F50C3381C324E36008675B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C3371C324E36008675B7 /* AppDelegate.swift */; };
-		2F50C33A1C324E36008675B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C3391C324E36008675B7 /* ViewController.swift */; };
 		2F50C33D1C324E36008675B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F50C33B1C324E36008675B7 /* Main.storyboard */; };
 		2F50C33F1C324E36008675B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F50C33E1C324E36008675B7 /* Assets.xcassets */; };
 		2F50C3421C324E36008675B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F50C3401C324E36008675B7 /* LaunchScreen.storyboard */; };
 		2F50C34D1C324E36008675B7 /* InAppPurchaseTestSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C34C1C324E36008675B7 /* InAppPurchaseTestSwiftTests.swift */; };
 		2F50C3581C324E36008675B7 /* InAppPurchaseTestSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C3571C324E36008675B7 /* InAppPurchaseTestSwiftUITests.swift */; };
+		2FA35FFE1C3F54990031231D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA35FF81C3F54990031231D /* DetailViewController.swift */; };
+		2FA360001C3F54990031231D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA35FFA1C3F54990031231D /* MasterViewController.swift */; };
+		2FA360021C3F54990031231D /* RageProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA35FFC1C3F54990031231D /* RageProducts.swift */; };
+		2FA360051C3F54C60031231D /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA360041C3F54C60031231D /* IAPHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,6 @@
 /* Begin PBXFileReference section */
 		2F50C3341C324E36008675B7 /* InAppPurchaseTestSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppPurchaseTestSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F50C3371C324E36008675B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F50C3391C324E36008675B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2F50C33C1C324E36008675B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F50C33E1C324E36008675B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F50C3411C324E36008675B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		2F50C3531C324E36008675B7 /* InAppPurchaseTestSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppPurchaseTestSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F50C3571C324E36008675B7 /* InAppPurchaseTestSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseTestSwiftUITests.swift; sourceTree = "<group>"; };
 		2F50C3591C324E36008675B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FA35FF81C3F54990031231D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2FA35FFA1C3F54990031231D /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		2FA35FFC1C3F54990031231D /* RageProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RageProducts.swift; sourceTree = "<group>"; };
+		2FA360041C3F54C60031231D /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				2F50C3371C324E36008675B7 /* AppDelegate.swift */,
-				2F50C3391C324E36008675B7 /* ViewController.swift */,
 				2F50C33B1C324E36008675B7 /* Main.storyboard */,
 				2F50C33E1C324E36008675B7 /* Assets.xcassets */,
 				2F50C3401C324E36008675B7 /* LaunchScreen.storyboard */,
 				2F50C3431C324E36008675B7 /* Info.plist */,
+				2FA35FF81C3F54990031231D /* DetailViewController.swift */,
+				2FA35FFA1C3F54990031231D /* MasterViewController.swift */,
+				2FA35FFC1C3F54990031231D /* RageProducts.swift */,
+				2FA360041C3F54C60031231D /* IAPHelper.swift */,
 			);
 			path = InAppPurchaseTestSwift;
 			sourceTree = "<group>";
@@ -256,8 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F50C33A1C324E36008675B7 /* ViewController.swift in Sources */,
+				2FA360001C3F54990031231D /* MasterViewController.swift in Sources */,
+				2FA35FFE1C3F54990031231D /* DetailViewController.swift in Sources */,
 				2F50C3381C324E36008675B7 /* AppDelegate.swift in Sources */,
+				2FA360051C3F54C60031231D /* IAPHelper.swift in Sources */,
+				2FA360021C3F54990031231D /* RageProducts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InAppPurchaseTestSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vignesh.InAppPurchaseTestSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vignesh.InAppPurchaseTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -412,7 +424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InAppPurchaseTestSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vignesh.InAppPurchaseTestSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vignesh.InAppPurchaseTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -484,6 +496,7 @@
 				2F50C35E1C324E36008675B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F50C35F1C324E36008675B7 /* Build configuration list for PBXNativeTarget "InAppPurchaseTestSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				2F50C3611C324E36008675B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F50C3621C324E36008675B7 /* Build configuration list for PBXNativeTarget "InAppPurchaseTestSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				2F50C3641C324E36008675B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
