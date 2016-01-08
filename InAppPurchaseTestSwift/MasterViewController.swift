@@ -155,23 +155,19 @@ class MasterViewController: UITableViewController {
     }
     return cell
   }
-    public func validateReceipt() {
+func validateReceipt() {
         
         let receiptData : NSData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)!
         
         let receiptString: NSString = receiptData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         
-        let requestContents : [String : AnyObject] = [ "receipt-data" : receiptString , "password" : "3888249939794d8ea499b35d6d86ec52"]
-        
-        let requestData = try! NSJSONSerialization.dataWithJSONObject(requestContents, options: [NSJSONWritingOptions(rawValue: 0)])
-        
-        let storeURL : NSURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
+        let storeURL : NSURL = NSURL(string: "http://verifyinapps.vshiva.com/")!
         
         let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
         
         storeRequest.HTTPMethod = "POST"
         
-        storeRequest.HTTPBody = requestData
+        storeRequest.HTTPBody = receiptString.dataUsingEncoding(NSASCIIStringEncoding)
         
         let session = NSURLSession.sharedSession()
         
