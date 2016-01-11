@@ -156,45 +156,31 @@ class MasterViewController: UITableViewController {
     return cell
   }
 func validateReceipt() {
-        
-        let receiptData : NSData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)!
-        
+    
+    if let receiptData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)
+    {
         let receiptString: NSString = receiptData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-        
         let storeURL : NSURL = NSURL(string: "http://verifyinapps.vshiva.com/")!
-        
         let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
-        
         storeRequest.HTTPMethod = "POST"
-        
         storeRequest.HTTPBody = receiptString.dataUsingEncoding(NSASCIIStringEncoding)
-        
         let session = NSURLSession.sharedSession()
-        
         let task = session.dataTaskWithRequest(storeRequest, completionHandler: {data, response, error -> Void in
-            
             let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
-            
             if let parseJSON = json {
-                
                 print("Receipt \(parseJSON)")
-                
             }
-                
             else {
-                
                 let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                
                 print("Receipt Error: \(jsonStr)")
-                
             }
-            
         })
-        
         task.resume();
-        
-        
-        
+    }
+    else{
+        print("No Purchases Done")
+    }
+    
     }
 
 
