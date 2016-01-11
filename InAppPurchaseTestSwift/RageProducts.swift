@@ -13,7 +13,7 @@ import Foundation
 public enum RageProducts {
   
   /// TODO:  Change this to whatever you set on iTunes connect
-  private static let Prefix = "com.vignesh.InAppPurchaseTest."
+  private static let Prefix = "com.care.springboard."
   
 
   
