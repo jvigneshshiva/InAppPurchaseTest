@@ -155,8 +155,11 @@ extension IAPHelper: SKPaymentTransactionObserver {
   // Helper: Saves the fact that the product has been purchased and posts a notification.
   private func provideContentForProductIdentifier(productIdentifier: String) {
     purchasedProductIdentifiers.insert(productIdentifier)
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
-    NSUserDefaults.standardUserDefaults().synchronize()
+    if(productIdentifier.containsString("PurchasePackConsumable") == false)
+    {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
     NSNotificationCenter.defaultCenter().postNotificationName(IAPHelperProductPurchasedNotification, object: productIdentifier)
   }
   
