@@ -159,7 +159,8 @@ func validateReceipt() {
     
     if let receiptData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)
     {
-        let receiptString: NSString = receiptData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        let receiptActualData : NSData = receiptData
+        let receiptString: NSString = receiptActualData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         let storeURL : NSURL = NSURL(string: "http://verifyinapps.vshiva.com/")!
         let storeRequest : NSMutableURLRequest = NSMutableURLRequest(URL: storeURL)
         storeRequest.HTTPMethod = "POST"
