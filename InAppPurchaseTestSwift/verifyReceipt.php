@@ -28,6 +28,6 @@
         }
     }
     
-    $new = '{"receipt-data":"'.$new.'","password":"3888249939794d8ea499b35d6d86ec52"}';
+    $new = '{"receipt-data":"'.$new.'","password":"d83dd06e9cf24605a53c3e5786b74613"}';
     $info = getReceiptData($new);
     ?>
