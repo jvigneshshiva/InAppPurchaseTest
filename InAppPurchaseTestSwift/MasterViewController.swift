@@ -29,7 +29,7 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        validateReceipt()
+        RageProducts.store.localReceiptValidation()
         title = "In App Demo"
         
         // Set up a refresh control, call reload to start things up
@@ -155,6 +155,8 @@ class MasterViewController: UITableViewController {
         }
         return cell
     }
+    
+    
     func validateReceipt() {
         
         if let receiptData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)
@@ -183,53 +185,9 @@ class MasterViewController: UITableViewController {
         }
         
     }
+
     
-    func localReceiptValidation() {
         
-        
-        if let receiptPath = NSBundle.mainBundle().appStoreReceiptURL?.path where
-            NSFileManager.defaultManager().fileExistsAtPath(receiptPath), let receiptData = NSData(contentsOfURL:NSBundle.mainBundle().appStoreReceiptURL!) {
-                let receiptDictionary = ["receipt-data" :receiptData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0)), "password" : "d83dd06e9cf24605a53c3e5786b74613"]
-                let requestData = try! NSJSONSerialization.dataWithJSONObject(receiptDictionary, options: NSJSONWritingOptions(rawValue: 0)) as NSData!
-                
-                let storeURL = NSURL(string:
-                    "https://sandbox.itunes.apple.com/verifyReceipt")!
-                let storeRequest = NSMutableURLRequest(URL: storeURL)
-                storeRequest.HTTPMethod = "POST"
-                storeRequest.HTTPBody = requestData
-                let session = NSURLSession(configuration:
-                    NSURLSessionConfiguration.defaultSessionConfiguration())
-                session.dataTaskWithRequest(storeRequest, completionHandler: { (data: NSData?, response: NSURLResponse?,connection: NSError?) -> Void in
-                    print("Call Successfull")
-                    if let jsonResponse: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as?NSDictionary, let expirationDate: NSDate =
-                        self.expirationDateFromResponse(jsonResponse) {
-                            print("Receipt \(jsonResponse)")
-                            print(expirationDate)
-                            //                        self.updateIAPExpirationDate(expirationDate)
-                            
-                    }
-                }).resume()
-        }
-    }
-    
-    func expirationDateFromResponse(jsonResponse: NSDictionary) -> NSDate? {
-        
-        if let receiptInfo: NSArray = jsonResponse["latest_receipt_info"] as? NSArray {
-            
-            let lastReceipt = receiptInfo.lastObject as! NSDictionary
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss VV"
-            let expirationDate: NSDate =
-            formatter.dateFromString(lastReceipt["expires_date"] as! String) as NSDate!
-            return expirationDate
-            
-        } else {
-            
-            return nil
-            
-        }
-    }
-    
     
     
 }
